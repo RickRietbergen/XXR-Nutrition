@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using XXR_Nutrition.Database;
+
 namespace XXR_Nutrition
 {
     public class Program
@@ -8,6 +11,10 @@ namespace XXR_Nutrition
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<XXRNutritionDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
 
             var app = builder.Build();
 
